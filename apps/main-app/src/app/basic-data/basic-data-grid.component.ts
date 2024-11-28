@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import { CustomButtonComponent } from './custom-button.component';
-import { ColDef, RowClassRules } from 'ag-grid-community';
+import { ColDef, GridOptions, RowClassRules } from 'ag-grid-community';
 import 'ag-grid-enterprise';
 
 @Component({
@@ -11,7 +11,7 @@ import 'ag-grid-enterprise';
     selector: 'df-basic-data-grid',
     template: `
     <ag-grid-angular class="ag-theme-alpine" [rowData]="rowData" [columnDefs]="colDefs"
-                     [defaultColDef]="defaultColDef" rowSelection="multiple"
+                     [defaultColDef]="defaultColDef" [gridOptions]="gridOptions"
                      [pagination]="true" [paginationPageSize]="10" [paginationPageSizeSelector]="[10, 20]"
                      [rowClassRules]="rowClassRules" rowGroupPanelShow="always" />
   `,
@@ -74,7 +74,6 @@ export class BasicDataGridComponent {
       flex: 2,
       cellEditor: 'agSelectCellEditor',
       cellEditorParams: { values: ['Tesla', 'Ford', 'Toyota'] },
-      checkboxSelection: true,
     },
     {
       field: 'model',
@@ -94,7 +93,17 @@ export class BasicDataGridComponent {
     },
     {
       field: 'electric'
-    }
+    },
   ];
+
+  gridOptions: GridOptions = {
+    rowSelection: {
+      mode: 'multiRow', // or 'singleRow' for single row selection
+      checkboxes: true, // enables selection checkboxes in rows
+      headerCheckbox: true, // enables the 'select all' checkbox in the header
+      // Additional configuration options as needed
+    },
+    // Other grid options...
+  };
 }
 

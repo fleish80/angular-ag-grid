@@ -10,12 +10,10 @@ import { GoodbyeComponent, HelloComponent } from './my-renderers';
 import { MyCustomComponent } from './my-renders.component';
 
 @Component({
-    selector: 'df-component-overview',
-    template: `
+  selector: 'df-component-overview',
+  template: `
     <ag-grid-angular
       class="ag-theme-alpine"
-      style="width: 100%; height: 100%"
-
       [columnDefs]="columnDefs"
       [defaultColDef]="defaultColDef"
       [rowData]="rowData$ | async"
@@ -25,35 +23,35 @@ import { MyCustomComponent } from './my-renders.component';
       (gridReady)="onGridReady($event)"
     ></ag-grid-angular>
   `,
-    imports: [
-        AgGridAngular,
-        AsyncPipe
-    ]
+  imports: [
+    AgGridAngular,
+    AsyncPipe
+  ]
 })
 export class ComponentOverviewComponent {
 
   components = {
     hello: HelloComponent,
     goodbye: GoodbyeComponent
-  }
+  };
 
   public statusBar: {
     statusPanels: StatusPanelDef[];
   } = {
     statusPanels: [
       {
-        statusPanel: HelloComponent,
+        statusPanel: HelloComponent
       },
       {
-        statusPanel: GoodbyeComponent,
+        statusPanel: GoodbyeComponent
       },
       {
         statusPanel: 'agAggregationComponent',
         statusPanelParams: {
-          aggFuncs: ['count', 'sum'],
-        },
-      },
-    ],
+          aggFuncs: ['count', 'sum']
+        }
+      }
+    ]
   };
 
   public sideBar: SideBarDef = {
@@ -65,10 +63,10 @@ export class ComponentOverviewComponent {
         labelDefault: 'Custom Comp',
         labelKey: 'customComp',
         iconKey: 'custom-Comp',
-        toolPanel: HelloComponent,
-      },
+        toolPanel: HelloComponent
+      }
     ],
-    defaultToolPanel: 'customComp',
+    defaultToolPanel: 'customComp'
   };
 
   public columnDefs: ColDef[] = [
@@ -81,14 +79,14 @@ export class ComponentOverviewComponent {
             params: {
               name: params.data.athlete
             }
-          }
+          };
         }
         return {
           component: 'goodbye',
           params: {
             name: params.data.athlete
           }
-        }
+        };
       }
     },
     {
@@ -99,7 +97,7 @@ export class ComponentOverviewComponent {
       field: 'country',
       filter: MyCustomComponent,
       filterParams: {
-        name: "Filter"
+        name: 'Filter'
       }
     },
     { field: 'year' },
@@ -108,22 +106,21 @@ export class ComponentOverviewComponent {
     { field: 'gold' },
     { field: 'silver' },
     { field: 'bronze' },
-    { field: 'total' },
+    { field: 'total' }
   ];
   public defaultColDef: ColDef = {
     sortable: true,
-    filter: true,
+    filter: true
   };
 
   public rowData$!: Observable<any[]>;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   onGridReady(params: GridReadyEvent) {
     this.rowData$ = this.http
       .get<any[]>('https://www.ag-grid.com/example-assets/olympic-winners.json');
-    // params.columnApi.autoSizeColumns(['age', 'country', 'year'])
-
     params.api.autoSizeColumns(['age', 'country', 'year']);
   }
 }
