@@ -3,12 +3,14 @@ import { CellRendererComponent } from './cell-renderer/cell-renderer.component';
 import { ComponentOverviewComponent } from './component-overview/component-overview.component';
 import { BasicDataGridComponent } from './basic-data/basic-data-grid.component';
 import { MatTab, MatTabGroup } from '@angular/material/tabs';
+import { NestedComponent } from './nested/nested.component';
 
 @Component({
   imports: [
     BasicDataGridComponent,
     CellRendererComponent,
     ComponentOverviewComponent,
+    NestedComponent,
     MatTab,
     MatTabGroup
   ],
@@ -23,6 +25,9 @@ import { MatTab, MatTabGroup } from '@angular/material/tabs';
       </mat-tab>
       <mat-tab label="Component Overview">
         <df-component-overview />
+      </mat-tab>
+      <mat-tab label="Nested">
+        <df-nested />
       </mat-tab>
     </mat-tab-group>
   `,
