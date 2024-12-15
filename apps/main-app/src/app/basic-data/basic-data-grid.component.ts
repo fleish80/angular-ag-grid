@@ -100,7 +100,7 @@ export class BasicDataGridComponent {
     rowSelection: {
       mode: 'multiRow', // or 'singleRow' for single row selection
       checkboxes: true, // enables selection checkboxes in rows
-      headerCheckbox: true, // enables the 'select all' checkbox in the header
+      headerCheckbox: false, // enables the 'select all' checkbox in the header
       // Additional configuration options as needed
     },
     // Other grid options...

@@ -4,6 +4,7 @@ import { ComponentOverviewComponent } from './component-overview/component-overv
 import { BasicDataGridComponent } from './basic-data/basic-data-grid.component';
 import { MatTab, MatTabGroup } from '@angular/material/tabs';
 import { NestedComponent } from './nested/nested.component';
+import { ToggleComponent } from './toggle-state/toggle.component';
 
 @Component({
   imports: [
@@ -11,6 +12,7 @@ import { NestedComponent } from './nested/nested.component';
     CellRendererComponent,
     ComponentOverviewComponent,
     NestedComponent,
+    ToggleComponent,
     MatTab,
     MatTabGroup
   ],
@@ -28,6 +30,9 @@ import { NestedComponent } from './nested/nested.component';
       </mat-tab>
       <mat-tab label="Nested">
         <df-nested />
+      </mat-tab>
+      <mat-tab label="Toggle">
+        <df-toggle />
       </mat-tab>
     </mat-tab-group>
   `,
