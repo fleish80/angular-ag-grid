@@ -16,7 +16,7 @@ import { Component } from '@angular/core';
 })
 export class DataRendererComponent implements ICellRendererAngularComp {
   public params: any;
-  isCollapsed: boolean = true;
+  isCollapsed = true;
 
   agInit(params: any): void {
     console.log(params);

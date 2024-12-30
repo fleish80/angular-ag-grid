@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
 })
 export class ToggleButtonRendererComponent implements ICellRendererAngularComp {
   private params: any;
-  isCollapsed: boolean = true;
+  isCollapsed = true;
 
   agInit(params: any): void {
     this.params = params;
