@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
-import { ColDef } from 'ag-grid-community';
+import { ColDef, themeAlpine } from 'ag-grid-community';
 import { GroupCellRendererComponent } from './group-cell-renderer.component';
 
 @Component({
@@ -14,7 +14,8 @@ import { GroupCellRendererComponent } from './group-cell-renderer.component';
     [defaultColDef]="defaultColDef"
     [detailCellRenderer]="detailCellRenderer"
     [masterDetail]="true"
-    [components]="frameworkComponents">
+    [components]="frameworkComponents"
+    [theme]="theme">
     </ag-grid-angular>
   `,
   styles: [`
@@ -51,4 +52,5 @@ export class NestedComponent {
     filter: true,
     resizable: true,
   };
+  theme = themeAlpine;
 }

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ColDef, GridReadyEvent, ICellRendererParams } from 'ag-grid-community';
+import { ColDef, GridReadyEvent, ICellRendererParams, themeAlpine } from 'ag-grid-community';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AgGridAngular } from 'ag-grid-angular';
@@ -20,7 +20,8 @@ import { OverComponent } from './over.component';
       [columnDefs]="columnDefs"
       [defaultColDef]="defaultColDef"
       [rowData]="rowData$ | async"
-      (gridReady)="onGridReady($event)"
+      [theme]="theme"
+      (gridReady)="onGridReady()"
     ></ag-grid-angular>
 
   `,
@@ -81,11 +82,12 @@ export class CellRendererComponent {
   };
 
   public rowData$!: Observable<any[]>;
+  theme = themeAlpine;
 
   constructor(private http: HttpClient) {
   }
 
-  onGridReady(params: GridReadyEvent) {
+  onGridReady() {
     this.rowData$ = this.http
       .get<any[]>('https://www.ag-grid.com/example-assets/olympic-winners.json');
   }

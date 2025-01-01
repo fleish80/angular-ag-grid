@@ -3,8 +3,8 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'df-toggle-button-renderer',
-  template: `
+    selector: 'df-toggle-button-renderer',
+    template: `
     <button (click)="onToggle()">
       {{ isCollapsed ? 'Show More' : 'Show Less' }}
     </button>

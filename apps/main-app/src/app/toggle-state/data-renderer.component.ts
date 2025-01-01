@@ -3,8 +3,8 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'df-data-renderer',
-  template: `
+    selector: 'df-data-renderer',
+    template: `
     @if (isCollapsed) {
     <div>
       {{ params.data.collapsedData }}

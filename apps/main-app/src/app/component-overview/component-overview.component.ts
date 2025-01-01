@@ -1,9 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { ColDef, GridReadyEvent, ICellRendererParams, SideBarDef, StatusPanelDef } from 'ag-grid-community';
+import {
+  ColDef,
+  GridReadyEvent,
+  ICellRendererParams,
+  SideBarDef,
+  StatusPanelDef,
+  themeAlpine
+} from 'ag-grid-community';
 import { Observable } from 'rxjs';
 
-import 'ag-grid-enterprise';
 import { AgGridAngular } from 'ag-grid-angular';
 import { AsyncPipe } from '@angular/common';
 import { GoodbyeComponent, HelloComponent } from './my-renderers';
@@ -20,6 +26,7 @@ import { MyCustomComponent } from './my-renders.component';
       [components]="components"
       [statusBar]="statusBar"
       [sideBar]="sideBar"
+      [theme]="theme"
       (gridReady)="onGridReady($event)"
     ></ag-grid-angular>
   `,
@@ -114,6 +121,7 @@ export class ComponentOverviewComponent {
   };
 
   public rowData$!: Observable<any[]>;
+  theme = themeAlpine;
 
   constructor(private http: HttpClient) {
   }

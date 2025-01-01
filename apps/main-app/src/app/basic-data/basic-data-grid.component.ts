@@ -1,40 +1,39 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import { CustomButtonComponent } from './custom-button.component';
-import { ColDef, GridOptions, RowClassRules } from 'ag-grid-community';
-import 'ag-grid-enterprise';
+import { ColDef, RowClassRules, RowSelectionOptions, themeAlpine } from 'ag-grid-community';
 
 @Component({
-    imports: [
-        AgGridAngular
-    ],
-    selector: 'df-basic-data-grid',
-    template: `
-    <ag-grid-angular class="ag-theme-alpine" [rowData]="rowData" [columnDefs]="colDefs"
-                     [defaultColDef]="defaultColDef" [gridOptions]="gridOptions"
+  imports: [
+    AgGridAngular
+  ],
+  selector: 'df-basic-data-grid',
+  template: `
+    <ag-grid-angular [rowData]="rowData" [columnDefs]="colDefs"
+                     [defaultColDef]="defaultColDef" [rowSelection]="rowSelection"
                      [pagination]="true" [paginationPageSize]="10" [paginationPageSizeSelector]="[10, 20]"
-                     [rowClassRules]="rowClassRules" rowGroupPanelShow="always" />
+                     [rowClassRules]="rowClassRules" rowGroupPanelShow="always" [theme]="theme" />
   `,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    styles: `
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  styles: `
 
-      :host {
-        display: flex;
-        flex-direction: column;
-        overflow: auto;
-        height: 100%;
+    :host {
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+      height: 100%;
+    }
+
+    ::ng-deep {
+      .green-cell {
+        background-color: rgb(100, 150, 100)
       }
 
-      ::ng-deep {
-        .green-cell {
-          background-color: rgb(100, 150, 100)
-        }
-
-        .red-row {
-          background-color: rgb(150, 100, 100);
-        }
+      .red-row {
+        background-color: rgb(150, 100, 100);
       }
-    `
+    }
+  `
 })
 export class BasicDataGridComponent {
 
@@ -46,7 +45,7 @@ export class BasicDataGridComponent {
 
   rowClassRules: RowClassRules<any> = {
     'red-row': p => p.data.make === 'Toyota'
-  }
+  };
 
   rowData = [
     { make: 'Tesla', model: 'Model Y', price: 64950, electric: true },
@@ -73,11 +72,11 @@ export class BasicDataGridComponent {
       cellRenderer: CustomButtonComponent,
       flex: 2,
       cellEditor: 'agSelectCellEditor',
-      cellEditorParams: { values: ['Tesla', 'Ford', 'Toyota'] },
+      cellEditorParams: { values: ['Tesla', 'Ford', 'Toyota'] }
     },
     {
       field: 'model',
-      floatingFilter: true,
+      floatingFilter: true
     },
     {
       headerName: 'Make & Model', valueGetter: p => p.data.make + ' ' + p.data.model
@@ -93,17 +92,18 @@ export class BasicDataGridComponent {
     },
     {
       field: 'electric'
-    },
+    }
   ];
 
-  gridOptions: GridOptions = {
-    rowSelection: {
-      mode: 'multiRow', // or 'singleRow' for single row selection
-      checkboxes: true, // enables selection checkboxes in rows
-      headerCheckbox: false, // enables the 'select all' checkbox in the header
-      // Additional configuration options as needed
-    },
-    // Other grid options...
+  rowSelection: RowSelectionOptions<any> = {
+    mode: 'multiRow', // or 'singleRow' for single row selection
+    checkboxes: true, // enables selection checkboxes in rows
+    headerCheckbox: false // enables the 'select all' checkbox in the header
+    // Additional configuration options as needed
   };
+
+  theme = themeAlpine;
+
+
 }
 

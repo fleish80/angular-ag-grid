@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 
 @Component({
-  selector: 'df-group-cell-renderer',
-  template: `
+    selector: 'df-group-cell-renderer',
+    template: `
     <div class="detail-container">
       Some content
     </div>
   `,
-  styles: [`
+    styles: [`
     .custom-group-cell {
       display: flex;
       align-items: center;
