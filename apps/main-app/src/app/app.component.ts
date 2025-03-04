@@ -5,6 +5,7 @@ import { BasicDataGridComponent } from './basic-data/basic-data-grid.component';
 import { MatTab, MatTabGroup } from '@angular/material/tabs';
 import { NestedComponent } from './nested/nested.component';
 import { ToggleComponent } from './toggle-state/toggle.component';
+import { TicketsComponent } from './tickets/tickets.component';
 
 @Component({
   imports: [
@@ -14,7 +15,8 @@ import { ToggleComponent } from './toggle-state/toggle.component';
     NestedComponent,
     ToggleComponent,
     MatTab,
-    MatTabGroup
+    MatTabGroup,
+    TicketsComponent
   ],
   selector: 'df-root',
   template: `
@@ -33,6 +35,9 @@ import { ToggleComponent } from './toggle-state/toggle.component';
       </mat-tab>
       <mat-tab label="Toggle">
         <df-toggle />
+      </mat-tab>
+      <mat-tab label="Tickets">
+        <df-tickets />
       </mat-tab>
     </mat-tab-group>
   `,
